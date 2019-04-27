@@ -6,11 +6,20 @@
             <ng-container *ngIf="(vehicles$ | async)?.length === 0; else showList" [ngTemplateOutlet]="emptyState">
             </ng-container>
             <ng-template #showList>
+                <ng-container [ngTemplateOutlet]="searchBar"></ng-container>
                 <app-vehicle-list class="list" [vehicles$]="vehicles$"></app-vehicle-list>
             </ng-template>
         </ng-template>
     </div>
 </div>
+
+<ng-template #searchBar>
+    <div class="search-container">
+        <div class="search">
+            Search: <input type="text">
+        </div>
+    </div>
+</ng-template>
 
 <ng-template #emptyState>
     <div class="list">

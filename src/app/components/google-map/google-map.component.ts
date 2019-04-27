@@ -31,27 +31,13 @@ export class GoogleMapComponent implements OnInit, OnChanges {
         if (!this.vehicle) {
             return;
         }
-        const mapProp = {
-            center: new google.maps.LatLng(this.vehicle.latitude, this.vehicle.longitude),
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-        };
-
-        this.map = new google.maps.Map(this.googleMapEle.nativeElement, mapProp);
-        this.showPosition();
-    }
-
-    showPosition() {
         const location = new google.maps.LatLng(this.vehicle.latitude, this.vehicle.longitude);
+
+        const mapProp = { center: location, zoom: 15, mapTypeId: google.maps.MapTypeId.ROADMAP };
+        this.map = new google.maps.Map(this.googleMapEle.nativeElement, mapProp);
+
         this.map.panTo(location);
-        if (!this.marker) {
-            this.marker = new google.maps.Marker({
-                position: location,
-                map: this.map,
-                title: 'Got you!'
-            });
-        } else {
-            this.marker.setPosition(location);
-        }
+        this.marker = new google.maps.Marker({ position: location, map: this.map, title: 'Here is the vehicle!' });
+        this.marker.setPosition(location);
     }
 }

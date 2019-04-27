@@ -3,12 +3,21 @@
         <h2>Real Time Vehicle Location</h2>
         <app-loader class="list" *ngIf="loading$ | async; else showData"></app-loader>
         <ng-template #showData>
-            <div *ngIf="(vehicles$ | async)?.length === 0; else showList">
-                Empty
-            </div>
+            <ng-container *ngIf="(vehicles$ | async)?.length === 0; else showList" [ngTemplateOutlet]="emptyState">
+            </ng-container>
             <ng-template #showList>
                 <app-vehicle-list class="list" [vehicles$]="vehicles$"></app-vehicle-list>
             </ng-template>
         </ng-template>
     </div>
 </div>
+
+<ng-template #emptyState>
+    <div class="list">
+        <div class="empty-box">
+            <img src="assets/images/empty.png">
+            <div class="empty">No data found!!!</div>
+        </div>
+    </div>
+
+</ng-template>

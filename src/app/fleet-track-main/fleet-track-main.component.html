@@ -1,6 +1,7 @@
 <div class="main">
     <div class="content">
         <h2>Real Time Vehicle Location</h2>
-        <app-vehicle-list class="list" [vehicles$]="vehicles$"></app-vehicle-list>
+        <app-vehicle-list *ngIf="(vehicles$ | async)?.length > 0" class="list" [vehicles$]="vehicles$">
+        </app-vehicle-list>
     </div>
 </div>

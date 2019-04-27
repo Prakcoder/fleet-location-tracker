@@ -1,9 +1,7 @@
 <div class="main">
     <div class="content">
         <h2>Real Time Vehicle Location</h2>
-        <div *ngIf="loading$ | async; else showData">
-            Loading...
-        </div>
+        <app-loader class="list" *ngIf="loading$ | async; else showData"></app-loader>
         <ng-template #showData>
             <div *ngIf="(vehicles$ | async)?.length === 0; else showList">
                 Empty

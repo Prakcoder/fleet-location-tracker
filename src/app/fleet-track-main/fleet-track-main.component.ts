@@ -16,6 +16,7 @@ export class FleetTrackMainComponent implements OnInit {
     public loading$ = this.apiService.loading$;
 
     public searchQuery$ = new BehaviorSubject<string>('');
+    public mapVehicleId$ = new BehaviorSubject<number>(undefined);
 
     constructor(private apiService: ApiService) {
         this.vehicles$ = combineLatest(this.searchQuery$, this.apiService.vehicles$).pipe(
@@ -30,7 +31,10 @@ export class FleetTrackMainComponent implements OnInit {
 
     ngOnInit() {
         this.apiService.loadVehicle();
+    }
 
+    public setVehicleId(vehicleId: number) {
+        this.mapVehicleId$.next(vehicleId);
     }
 }
 

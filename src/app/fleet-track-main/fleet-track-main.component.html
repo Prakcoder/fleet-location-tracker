@@ -7,7 +7,9 @@
             <ng-container *ngIf="(vehicles$ | async)?.length === 0; else showList" [ngTemplateOutlet]="emptyState">
             </ng-container>
             <ng-template #showList>
-                <app-vehicle-list class="list" [vehicles$]="vehicles$"></app-vehicle-list>
+                <app-vehicle-list class="list" [vehicles$]="vehicles$" (showMapClicked)="setVehicleId($event)">
+                </app-vehicle-list>
+                <app-google-map [vehicleId]="mapVehicleId$ | async"></app-google-map>
             </ng-template>
         </ng-template>
     </div>

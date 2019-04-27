@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { LoaderComponent } from '../components/loader/loader.component';
 import { VehicleListComponent } from '../components/vehicle-list/vehicle-list.component';
@@ -11,11 +12,12 @@ import { FleetTrackMainComponent } from './fleet-track-main.component';
     declarations: [
         FleetTrackMainComponent,
         VehicleListComponent,
-        LoaderComponent
+        LoaderComponent,
     ],
     imports: [
         CommonModule,
-        HttpClientModule
+        HttpClientModule,
+        FormsModule
     ],
     providers: [ApiService]
 })

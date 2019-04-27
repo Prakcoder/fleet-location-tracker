@@ -3,10 +3,10 @@
         <h2>Real Time Vehicle Location</h2>
         <app-loader class="list" *ngIf="loading$ | async; else showData"></app-loader>
         <ng-template #showData>
+            <ng-container [ngTemplateOutlet]="searchBar"></ng-container>
             <ng-container *ngIf="(vehicles$ | async)?.length === 0; else showList" [ngTemplateOutlet]="emptyState">
             </ng-container>
             <ng-template #showList>
-                <ng-container [ngTemplateOutlet]="searchBar"></ng-container>
                 <app-vehicle-list class="list" [vehicles$]="vehicles$"></app-vehicle-list>
             </ng-template>
         </ng-template>
@@ -16,7 +16,7 @@
 <ng-template #searchBar>
     <div class="search-container">
         <div class="search">
-            Search: <input type="text">
+            Search: <input [ngModel]="searchQuery$ | async" (ngModelChange)='searchQuery$.next($event)' type="text">
         </div>
     </div>
 </ng-template>

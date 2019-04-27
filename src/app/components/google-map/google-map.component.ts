@@ -50,8 +50,8 @@ export class GoogleMapComponent implements OnInit, OnChanges {
                 map: this.map,
                 title: 'Got you!'
             });
-            return;
+        } else {
+            this.marker.setPosition(location);
         }
-        this.marker.setPosition(location);
     }
 }

@@ -24,7 +24,8 @@
 <ng-template #searchBar>
     <div class="search-container">
         <div class="search">
-            Search: <input [ngModel]="searchQuery$ | async" (ngModelChange)='searchQuery$.next($event)' type="text">
+            <div>Search: </div>
+            <input [ngModel]="searchQuery$ | async" (ngModelChange)='searchQuery$.next($event)' type="text">
         </div>
     </div>
 </ng-template>

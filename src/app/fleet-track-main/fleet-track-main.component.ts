@@ -11,6 +11,7 @@ import { ApiService } from '../services/api.service';
 export class FleetTrackMainComponent implements OnInit {
 
     public vehicles$ = this.apiService.vehicles$;
+    public loading$ = this.apiService.loading$;
     constructor(private apiService: ApiService) { }
 
     ngOnInit() {

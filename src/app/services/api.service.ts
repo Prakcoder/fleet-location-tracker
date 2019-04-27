@@ -10,6 +10,7 @@ export class ApiService {
 
     private baseUrl = 'https://api.fleetx.io/api/v1/';
     public vehicles$ = new BehaviorSubject<Vehicle[]>([]);
+    public loading$ = new BehaviorSubject<boolean>(true);
     constructor(private http: HttpClient) {
 
     }
@@ -22,6 +23,7 @@ export class ApiService {
                 flatMap(() => this.loadVehicleInner(url))
             )
             .subscribe(vehicles => {
+                this.loading$.next(false);
                 this.vehicles$.next(vehicles);
             });
     }

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map, take } from 'rxjs/operators';
 
 import { ApiService } from '../services/api.service';
 
@@ -31,6 +31,10 @@ export class FleetTrackMainComponent implements OnInit {
 
     ngOnInit() {
         this.apiService.loadVehicle();
+        this.vehicles$.pipe(filter(v => v.length > 0), take(1))
+            .subscribe(v => {
+                this.mapVehicleId$.next(v[0].vehicleId);
+            });
     }
 
     public setVehicleId(vehicleId: number) {

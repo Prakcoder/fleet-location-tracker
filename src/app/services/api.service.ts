@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, interval, Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, flatMap, map, take } from 'rxjs/operators';
 
 import { MOCK_DATA } from '../constants/data';
 
@@ -17,26 +17,25 @@ export class ApiService {
     public loadVehicle() {
         const url = this.baseUrl + 'analytics/live/new/eJwFwYENACAIA7CLlohghHNExhnebiuij6nNio1pHTC9RA4uuC$J4xFV$OTpCzE=';
         return interval(5000)
-            .subscribe(() => {
-                this.loadVehicleInner(url);
+            .pipe(flatMap(() => this.loadVehicleInner(url)))
+            .subscribe(vehicles => {
+                this.vehicles$.next(vehicles);
             });
     }
 
     private loadVehicleInner(url: string) {
-        this.http.get<ApiResponse>(url).pipe(
+        return this.http.get<ApiResponse>(url).pipe(
             map(response => response.vehicles),
             catchError(error => {
                 // Request is failing due to Access-Control-Allow-Origin set 'https://www.fleetx.io' orgin only in response
                 // So I am using mock data
                 return this.getMockData();
             })
-        ).subscribe(vehicles => {
-            this.vehicles$.next(vehicles);
-        });
+        );
     }
 
     private getMockData(): Observable<Vehicle[]> {
-        return of(MOCK_DATA.vehicles);
+        return of(MOCK_DATA.vehicles).pipe(take(1));
     }
 }
 

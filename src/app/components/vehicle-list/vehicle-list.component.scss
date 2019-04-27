@@ -11,6 +11,7 @@
 .vehicle-card {
     margin: 0 5% 0 5%;
     padding: 10px;
+    position: relative;
 
     @media only screen and (max-width: 600px) {
         padding: 3px;
@@ -27,4 +28,10 @@
 
 .address {
     color: grey;
+}
+
+.map-button {
+    position: absolute;
+    top: 0;
+    right: 0;
 }

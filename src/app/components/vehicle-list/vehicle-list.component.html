@@ -4,6 +4,7 @@
         *ngFor="let vehicle of vehicles; let i = index">
         <div class="vehicle-card">
             <div class="vehicle-number">{{vehicle.vehicleNumber}}</div>
+            <div class="map-button" (click)="showMap(vehicle.id)">Map</div>
             <div class="vehicle-name">{{vehicle.vehicleMake}} {{vehicle.vehicleModel}}</div>
 
             <div class="address">{{vehicle.address}}</div>

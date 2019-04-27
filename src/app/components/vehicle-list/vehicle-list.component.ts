@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,9 +10,14 @@ import { Observable } from 'rxjs';
 export class VehicleListComponent implements OnInit {
 
     @Input() vehicles$: Observable<Vehicle[]>;
+    @Output() showMapClicked = new EventEmitter<string>();
     constructor() { }
 
     ngOnInit() {
+    }
+
+    public showMap(vehicleId: string) {
+        this.showMapClicked.emit(vehicleId);
     }
 
 }

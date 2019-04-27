@@ -1,17 +1,22 @@
-<div class="main">
+<div>
+    <h2 class="title">Real Time Vehicle Location</h2>
     <div class="content">
-        <h2>Real Time Vehicle Location</h2>
-        <app-loader class="list" *ngIf="loading$ | async; else showData"></app-loader>
-        <ng-template #showData>
-            <ng-container [ngTemplateOutlet]="searchBar"></ng-container>
-            <ng-container *ngIf="(vehicles$ | async)?.length === 0; else showList" [ngTemplateOutlet]="emptyState">
-            </ng-container>
-            <ng-template #showList>
-                <app-vehicle-list class="list" [vehicles$]="vehicles$" (showMapClicked)="setVehicleId($event)">
-                </app-vehicle-list>
-                <app-google-map [vehicleId]="mapVehicleId$ | async"></app-google-map>
+        <div class="list-section">
+            <app-loader class="list" *ngIf="loading$ | async; else showData"></app-loader>
+            <ng-template #showData>
+                <ng-container [ngTemplateOutlet]="searchBar"></ng-container>
+                <ng-container *ngIf="(vehicles$ | async)?.length === 0; else showList" [ngTemplateOutlet]="emptyState">
+                </ng-container>
+                <ng-template #showList>
+                    <app-vehicle-list class="list" [vehicles$]="vehicles$" (showMapClicked)="setVehicleId($event)">
+                    </app-vehicle-list>
+                </ng-template>
             </ng-template>
-        </ng-template>
+        </div>
+
+        <div class="map-section" *ngIf="mapVehicleId$ | async as vehicleId">
+            <app-google-map [vehicleId]="vehicleId"></app-google-map>
+        </div>
     </div>
 </div>
 

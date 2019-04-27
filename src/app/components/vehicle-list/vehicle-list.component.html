@@ -1,3 +1,13 @@
-<div *ngFor="let vehicle of vehicles$ | async">
-    {{vehicle.vehicleName}}
-</div>
+<ng-container *ngIf="vehicles$ | async as vehicles">
+
+    <div class="list-item" [class.last-item]="i === vehicles.length - 1"
+        *ngFor="let vehicle of vehicles; let i = index">
+        <div class="vehicle-card">
+            <div class="vehicle-number">{{vehicle.vehicleNumber}}</div>
+            <div class="vehicle-name">{{vehicle.vehicleMake}} {{vehicle.vehicleModel}}</div>
+
+            <div>{{vehicle.address}}</div>
+        </div>
+    </div>
+
+</ng-container>

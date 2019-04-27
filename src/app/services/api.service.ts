@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, interval, Observable, of } from 'rxjs';
-import { catchError, flatMap, map, take } from 'rxjs/operators';
+import { catchError, flatMap, map, startWith, take } from 'rxjs/operators';
 
 import { MOCK_DATA } from '../constants/data';
 
@@ -17,7 +17,10 @@ export class ApiService {
     public loadVehicle() {
         const url = this.baseUrl + 'analytics/live/new/eJwFwYENACAIA7CLlohghHNExhnebiuij6nNio1pHTC9RA4uuC$J4xFV$OTpCzE=';
         return interval(5000)
-            .pipe(flatMap(() => this.loadVehicleInner(url)))
+            .pipe(
+                startWith(0),
+                flatMap(() => this.loadVehicleInner(url))
+            )
             .subscribe(vehicles => {
                 this.vehicles$.next(vehicles);
             });

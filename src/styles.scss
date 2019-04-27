@@ -3,7 +3,7 @@ body {
     font-size: 1em;
     background-color: aliceblue;
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 800px) {
         font-size: .9em;
     }
 }

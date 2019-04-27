@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -8,13 +10,11 @@ import { ApiService } from '../services/api.service';
 })
 export class FleetTrackMainComponent implements OnInit {
 
+    public vehicles$: Observable<Vehicle[]>;
     constructor(private apiService: ApiService) { }
 
     ngOnInit() {
-        this.apiService.loadVehicle()
-            .subscribe(data => {
-                console.log('datadata: ', data);
-            });
+        this.vehicles$ = this.apiService.loadVehicle();
     }
 
 }

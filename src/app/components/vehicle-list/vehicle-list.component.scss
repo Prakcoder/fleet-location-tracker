@@ -1,0 +1,26 @@
+.list-item {
+    border-bottom: 2px solid gray;
+    background-color: azure;
+    border-radius: 7px 7px 0 0;
+}
+
+.last-item {
+    border-radius: 0 0 7px 7px;
+}
+
+.vehicle-card {
+    margin: 0 5% 0 5%;
+    padding: 10px;
+
+    @media only screen and (max-width: 600px) {
+        padding: 3px;
+    }
+}
+
+.vehicle-number {
+    width: 50%;
+}
+
+.vehicle-name {
+    font-weight: 600;
+}

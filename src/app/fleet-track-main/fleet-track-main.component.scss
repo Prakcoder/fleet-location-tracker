@@ -1,0 +1,21 @@
+.main {
+    text-align: center;
+}
+
+.content {
+    padding-bottom: 2px;
+}
+
+.list {
+    border: solid 1px gray;
+    box-shadow: 4px 4px 5px;
+    text-align: left;
+    display: block;
+    border-radius: 7px;
+
+    @media only screen and (min-width: 600px) {
+        width: 60%;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}

@@ -18,6 +18,8 @@ export class FleetTrackMainComponent implements OnInit {
     public searchQuery$ = new BehaviorSubject<string>('');
     public mapVehicleId$ = new BehaviorSubject<number>(undefined);
 
+    public showMapOnPhone = false;
+
     constructor(private apiService: ApiService) {
         this.vehicles$ = combineLatest(this.searchQuery$, this.apiService.vehicles$).pipe(
             map(([query, vehicles]) => {
@@ -38,6 +40,7 @@ export class FleetTrackMainComponent implements OnInit {
     }
 
     public setVehicleId(vehicleId: number) {
+        this.showMapOnPhone = true;
         this.mapVehicleId$.next(vehicleId);
     }
 }

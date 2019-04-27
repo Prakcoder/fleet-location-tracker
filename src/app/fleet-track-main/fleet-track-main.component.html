@@ -1,7 +1,7 @@
 <div>
     <h2 class="title">Real Time Vehicle Location</h2>
     <div class="content">
-        <div class="list-section">
+        <div class="list-section" [class.hide]="showMapOnPhone">
             <app-loader class="list" *ngIf="loading$ | async; else showData"></app-loader>
             <ng-template #showData>
                 <ng-container [ngTemplateOutlet]="searchBar"></ng-container>
@@ -14,7 +14,7 @@
             </ng-template>
         </div>
 
-        <div class="map-section" *ngIf="mapVehicleId$ | async as vehicleId">
+        <div class="map-section" [class.show]="showMapOnPhone" *ngIf="mapVehicleId$ | async as vehicleId">
             <app-google-map [vehicleId]="vehicleId"></app-google-map>
         </div>
     </div>

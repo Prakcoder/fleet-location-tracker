@@ -15,6 +15,7 @@
         </div>
 
         <div class="map-section" [class.show]="showMapOnPhone" *ngIf="mapVehicleId$ | async as vehicleId">
+            <div class="close" (click)="showMapOnPhone=false">x</div>
             <app-google-map [vehicleId]="vehicleId"></app-google-map>
         </div>
     </div>

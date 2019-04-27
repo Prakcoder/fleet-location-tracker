@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { ApiService } from '../services/api.service';
 
 @Component({
     selector: 'app-fleet-track-main',
     templateUrl: './fleet-track-main.component.html',
-    styleUrls: ['./fleet-track-main.component.scss']
+    styleUrls: ['./fleet-track-main.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FleetTrackMainComponent implements OnInit {
 
-    public vehicles$: Observable<Vehicle[]>;
+    public vehicles$ = this.apiService.vehicles$;
     constructor(private apiService: ApiService) { }
 
     ngOnInit() {
-        this.vehicles$ = this.apiService.loadVehicle();
+        this.apiService.loadVehicle();
     }
 
 }

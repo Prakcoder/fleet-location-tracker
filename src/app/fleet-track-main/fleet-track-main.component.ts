@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../services/api.service';
 
 @Component({
     selector: 'app-fleet-track-main',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FleetTrackMainComponent implements OnInit {
 
-    constructor() { }
+    constructor(private apiService: ApiService) { }
 
     ngOnInit() {
+        this.apiService.loadVehicle()
+            .subscribe(data => {
+                console.log('datadata: ', data);
+            });
     }
 
 }

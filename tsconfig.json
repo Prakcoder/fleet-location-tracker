@@ -16,7 +16,8 @@
             "src/types"
         ],
         "types": [
-            "fleet-types"
+            "fleet-types",
+            "googlemaps"
         ],
         "lib": [
             "es2018",
